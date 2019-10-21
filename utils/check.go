@@ -15,7 +15,7 @@ func FailOnError(err error, msg string) {
 
 func FailIfNotInitialized(i int, msg string) {
 	if i == 0 {
-		log.Fatalf(fmt.Sprintf("variable is nil: %s", msg))
+		log.Fatalf(fmt.Sprintf("%s", msg))
 	}
 }
 
