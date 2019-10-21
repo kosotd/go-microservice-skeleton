@@ -13,9 +13,9 @@ func FailOnError(err error, msg string) {
 	}
 }
 
-func CheckNotNil(v interface{}, msg string) {
+func FailIfNil(v interface{}, msg string) {
 	if v == nil {
-		log.Fatalf("%s", msg)
+		log.Fatalf(fmt.Sprintf("variable is nil: %s", msg))
 	}
 }
 

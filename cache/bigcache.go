@@ -8,7 +8,7 @@ import (
 	"sync"
 )
 
-var cache *bigcache.BigCache
+var cache *bigcache.BigCache = nil
 var once sync.Once
 
 func InitBigCache() {
@@ -20,7 +20,7 @@ func InitBigCache() {
 }
 
 func SetData(key string, data []byte) error {
-	utils.CheckNotNil(cache, "cache are not initialized")
+	utils.FailIfNil(cache, "cache are not initialized")
 
 	if err := cache.Set(key, data); err != nil {
 		return errors.Wrapf(err, "cache.SetData -> cache.Set(%s)", key)
@@ -29,7 +29,7 @@ func SetData(key string, data []byte) error {
 }
 
 func GetData(key string) ([]byte, bool) {
-	utils.CheckNotNil(cache, "cache are not initialized")
+	utils.FailIfNil(cache, "cache are not initialized")
 
 	if data, err := cache.Get(key); err == nil {
 		return data, true

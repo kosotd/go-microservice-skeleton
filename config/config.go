@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-var conf *Config
+var conf *Config = nil
 
 type Config struct {
 	ServerPort        string
@@ -14,7 +14,7 @@ type Config struct {
 }
 
 func GetConfig() *Config {
-	utils.CheckNotNil(conf, "config are not initialized")
+	utils.FailIfNil(conf, "config are not initialized")
 	return conf
 }
 
