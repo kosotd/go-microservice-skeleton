@@ -9,8 +9,6 @@ import (
 )
 
 func CacheAndWrite(w http.ResponseWriter, cacheName string, responseSupplier func() (interface{}, error)) error {
-	cache.InitBigCache()
-
 	var data []byte
 	var has bool
 	if data, has = cache.GetData(cacheName); !has {

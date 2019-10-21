@@ -6,25 +6,30 @@ import (
 	"github.com/joho/godotenv"
 	"go-microservice-skeleton/utils"
 	"os"
+	"sync"
 )
+
+var once sync.Once
 
 type configGetter interface {
 	GetBaseConfig() *Config
 }
 
 func InitConfig(configGetter configGetter, loadEnvChild func(EnvHelper)) {
-	conf = configGetter.GetBaseConfig()
-	fileName := flag.String("config", "", "Full path to config file")
-	flag.Parse()
+	once.Do(func() {
+		conf = configGetter.GetBaseConfig()
+		fileName := flag.String("config", "", "Full path to config file")
+		flag.Parse()
 
-	if utils.IsNotEmpty(*fileName) {
-		loadFileConfiguration(*fileName, conf)
-		loadFileConfiguration(*fileName, configGetter)
-	} else {
-		helper := &envHelperImpl{}
-		loadEnvConfiguration(conf, helper)
-		loadEnvChild(helper)
-	}
+		if utils.IsNotEmpty(*fileName) {
+			loadFileConfiguration(*fileName, conf)
+			loadFileConfiguration(*fileName, configGetter)
+		} else {
+			helper := &envHelperImpl{}
+			loadEnvConfiguration(conf, helper)
+			loadEnvChild(helper)
+		}
+	})
 }
 
 func loadFileConfiguration(file string, conf interface{}) {

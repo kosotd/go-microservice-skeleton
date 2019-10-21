@@ -4,6 +4,7 @@ import (
 	"github.com/allegro/bigcache"
 	"github.com/pkg/errors"
 	"go-microservice-skeleton/config"
+	"go-microservice-skeleton/utils"
 	"sync"
 )
 
@@ -19,6 +20,8 @@ func InitBigCache() {
 }
 
 func SetData(key string, data []byte) error {
+	utils.CheckNotNil(cache, "cache are not initialized")
+
 	if err := cache.Set(key, data); err != nil {
 		return errors.Wrapf(err, "cache.SetData -> cache.Set(%s)", key)
 	}
@@ -26,6 +29,8 @@ func SetData(key string, data []byte) error {
 }
 
 func GetData(key string) ([]byte, bool) {
+	utils.CheckNotNil(cache, "cache are not initialized")
+
 	if data, err := cache.Get(key); err == nil {
 		return data, true
 	}

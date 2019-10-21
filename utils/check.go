@@ -13,6 +13,12 @@ func FailOnError(err error, msg string) {
 	}
 }
 
+func CheckNotNil(v interface{}, msg string) {
+	if v == nil {
+		log.Fatalf("%s", msg)
+	}
+}
+
 func RecoverAndSetStatus(w http.ResponseWriter, code int) {
 	if r := recover(); r != nil {
 		LogAndSetStatusIfError(w, code, errors.New(fmt.Sprint(r)))

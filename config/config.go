@@ -14,6 +14,7 @@ type Config struct {
 }
 
 func GetConfig() *Config {
+	utils.CheckNotNil(conf, "config are not initialized")
 	return conf
 }
 
