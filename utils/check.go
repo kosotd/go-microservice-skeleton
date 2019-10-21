@@ -13,8 +13,8 @@ func FailOnError(err error, msg string) {
 	}
 }
 
-func FailIfNil(v interface{}, msg string) {
-	if v == nil {
+func FailIfNotInitialized(i int, msg string) {
+	if i == 0 {
 		log.Fatalf(fmt.Sprintf("variable is nil: %s", msg))
 	}
 }

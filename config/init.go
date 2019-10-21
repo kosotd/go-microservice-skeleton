@@ -29,6 +29,8 @@ func InitConfig(configGetter configGetter, loadEnvChild func(EnvHelper)) {
 			loadEnvConfiguration(conf, helper)
 			loadEnvChild(helper)
 		}
+
+		initialized = 1
 	})
 }
 
