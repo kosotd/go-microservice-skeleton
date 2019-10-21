@@ -1,8 +1,8 @@
 package cache
 
 import (
-	"go-microservice-skeleton/cache"
-	"go-microservice-skeleton/config"
+	"github.com/kosotd/go-microservice-skeleton/cache"
+	"github.com/kosotd/go-microservice-skeleton/config"
 	"gotest.tools/assert"
 	"testing"
 	"time"

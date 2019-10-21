@@ -2,10 +2,10 @@ package server
 
 import (
 	"encoding/json"
+	"github.com/kosotd/go-microservice-skeleton/cache"
+	"github.com/kosotd/go-microservice-skeleton/config"
+	"github.com/kosotd/go-microservice-skeleton/server"
 	"github.com/pkg/errors"
-	"go-microservice-skeleton/cache"
-	"go-microservice-skeleton/config"
-	"go-microservice-skeleton/server"
 	"gotest.tools/assert"
 	"io/ioutil"
 	"net/http/httptest"

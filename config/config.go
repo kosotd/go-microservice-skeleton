@@ -1,7 +1,7 @@
 package config
 
 import (
-	"go-microservice-skeleton/utils"
+	"github.com/kosotd/go-microservice-skeleton/utils"
 	"time"
 )
 

@@ -3,8 +3,8 @@ package server
 import (
 	"bytes"
 	"encoding/json"
+	"github.com/kosotd/go-microservice-skeleton/cache"
 	"github.com/pkg/errors"
-	"go-microservice-skeleton/cache"
 	"net/http"
 )
 

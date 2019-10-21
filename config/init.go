@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"flag"
 	"github.com/joho/godotenv"
-	"go-microservice-skeleton/utils"
+	"github.com/kosotd/go-microservice-skeleton/utils"
 	"os"
 	"sync"
 )

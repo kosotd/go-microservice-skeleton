@@ -3,8 +3,8 @@ package server
 import (
 	"context"
 	"fmt"
-	"go-microservice-skeleton/config"
-	"go-microservice-skeleton/utils"
+	"github.com/kosotd/go-microservice-skeleton/config"
+	"github.com/kosotd/go-microservice-skeleton/utils"
 	"net/http"
 	"os"
 	"os/signal"

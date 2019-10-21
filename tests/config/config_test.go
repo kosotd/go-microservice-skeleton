@@ -1,7 +1,7 @@
 package config
 
 import (
-	"go-microservice-skeleton/config"
+	"github.com/kosotd/go-microservice-skeleton/config"
 	"gotest.tools/assert"
 	"testing"
 )

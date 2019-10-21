@@ -2,9 +2,9 @@ package cache
 
 import (
 	"github.com/allegro/bigcache"
+	"github.com/kosotd/go-microservice-skeleton/config"
+	"github.com/kosotd/go-microservice-skeleton/utils"
 	"github.com/pkg/errors"
-	"go-microservice-skeleton/config"
-	"go-microservice-skeleton/utils"
 	"sync"
 )
 
