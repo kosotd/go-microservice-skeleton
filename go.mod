@@ -1,4 +1,4 @@
-module go-microservice-skeleton
+module github.com/kosotd/go-microservice-skeleton
 
 go 1.12
 
