@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/kosotd/go-microservice-skeleton/config"
 	"github.com/kosotd/go-microservice-skeleton/utils"
+	"github.com/pkg/errors"
 	"net/http"
 	"os"
 	"os/signal"
@@ -21,7 +22,7 @@ func RunServer(handler http.Handler) {
 	go func() {
 		utils.LogInfo(fmt.Sprintf("server started on port: %s", config.GetConfig().ServerPort))
 		if err := srv.ListenAndServe(); err != nil && err != http.ErrServerClosed {
-			utils.FailOnError(err, "error start server")
+			utils.FailIfError(errors.Wrapf(err, "error start server"))
 		}
 	}()
 
@@ -33,7 +34,7 @@ func RunServer(handler http.Handler) {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 	if err := srv.Shutdown(ctx); err != nil {
-		utils.FailOnError(err, "error shutdown server")
+		utils.FailIfError(errors.Wrap(err, "error shutdown server"))
 	}
 
 	utils.LogInfo("server exiting")

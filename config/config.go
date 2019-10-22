@@ -2,6 +2,7 @@ package config
 
 import (
 	"github.com/kosotd/go-microservice-skeleton/utils"
+	"github.com/pkg/errors"
 	"time"
 )
 
@@ -15,18 +16,18 @@ type Config struct {
 }
 
 func GetConfig() *Config {
-	utils.FailIfNotInitialized(initialized, "config are not initialized")
+	utils.FailIfNotInitialized(initialized, "config not initialized")
 	return conf
 }
 
 func (c *Config) GetCacheExpiration() time.Duration {
 	duration, err := time.ParseDuration(c.CacheExpiration)
-	utils.FailOnError(err, "error read cache expiration from config")
+	utils.FailIfError(errors.Wrapf(err, "error read cache expiration from config"))
 	return duration
 }
 
 func (c *Config) GetCacheUpdatePeriod() time.Duration {
 	duration, err := time.ParseDuration(c.CacheUpdatePeriod)
-	utils.FailOnError(err, "error read cache update period from config")
+	utils.FailIfError(errors.Wrap(err, "error read cache update period from config"))
 	return duration
 }

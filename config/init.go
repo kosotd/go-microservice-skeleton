@@ -5,6 +5,7 @@ import (
 	"flag"
 	"github.com/joho/godotenv"
 	"github.com/kosotd/go-microservice-skeleton/utils"
+	"github.com/pkg/errors"
 	"os"
 	"sync"
 )
@@ -43,11 +44,11 @@ func InitConfig(configGetter configGetter, loadEnvChild func(EnvHelper)) {
 
 func loadFileConfiguration(file string, conf interface{}) {
 	configFile, err := os.Open(file)
-	utils.FailOnError(err, "error open config file")
+	utils.FailIfError(errors.Wrapf(err, "error open config file"))
 	defer utils.CloseSafe(configFile)
 	jsonParser := json.NewDecoder(configFile)
 	err = jsonParser.Decode(&conf)
-	utils.FailOnError(err, "error decode config json")
+	utils.FailIfError(errors.Wrap(err, "error decode config json"))
 }
 
 func loadEnvConfiguration(conf *Config, helper EnvHelper) {

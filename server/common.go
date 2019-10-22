@@ -24,7 +24,7 @@ func CacheAndWrite(w http.ResponseWriter, cacheName string, responseSupplier fun
 		data = buff.Bytes()
 		err = cache.SetData(cacheName, data)
 		if err != nil {
-			return errors.Wrapf(err, "server.CacheAndWrite -> cache.SetData")
+			return errors.Wrapf(err, "server.CacheAndWrite -> cache.SetData(%s)", cacheName)
 		}
 	}
 
