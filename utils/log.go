@@ -15,7 +15,11 @@ func LogError(msg string) {
 
 func LogAndSetStatusIfError(w http.ResponseWriter, code int, err error) {
 	if err != nil {
-		LogError(err.Error())
-		http.Error(w, http.StatusText(code), code)
+		LogAndSetStatus(w, code, err)
 	}
+}
+
+func LogAndSetStatus(w http.ResponseWriter, code int, err error) {
+	LogError(err.Error())
+	http.Error(w, http.StatusText(code), code)
 }
