@@ -17,17 +17,24 @@ type configGetter interface {
 
 func InitConfig(configGetter configGetter, loadEnvChild func(EnvHelper)) {
 	once.Do(func() {
-		conf = configGetter.GetBaseConfig()
+		conf = &Config{}
+		if configGetter != nil {
+			conf = configGetter.GetBaseConfig()
+		}
 		fileName := flag.String("config", "", "Full path to config file")
 		flag.Parse()
 
 		if utils.IsNotEmpty(*fileName) {
 			loadFileConfiguration(*fileName, conf)
-			loadFileConfiguration(*fileName, configGetter)
+			if configGetter != nil {
+				loadFileConfiguration(*fileName, configGetter)
+			}
 		} else {
 			helper := &envHelperImpl{}
 			loadEnvConfiguration(conf, helper)
-			loadEnvChild(helper)
+			if loadEnvChild != nil {
+				loadEnvChild(helper)
+			}
 		}
 
 		initialized = 1
