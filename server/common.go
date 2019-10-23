@@ -14,7 +14,7 @@ func CacheAndWrite(w http.ResponseWriter, cacheName string, responseSupplier fun
 	if data, has = cache.GetData(cacheName); !has {
 		resp, err := responseSupplier()
 		if err != nil {
-			return errors.Wrapf(err, "server.CacheAndWrite -> responseSupplier()")
+			return errors.Wrapf(err, "server.CacheAndWrite -> responseSupplier")
 		}
 		var buff bytes.Buffer
 		err = json.NewEncoder(&buff).Encode(resp)

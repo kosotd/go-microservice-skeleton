@@ -35,7 +35,7 @@ func TestCacheAndWrite(t *testing.T) {
 	err := server.CacheAndWrite(recorder, "cache", func() (resp interface{}, err error) {
 		return nil, errors.New("error1")
 	})
-	assert.Error(t, err, "server.CacheAndWrite -> responseSupplier(): error1")
+	assert.Error(t, err, "server.CacheAndWrite -> responseSupplier: error1")
 
 	err = server.CacheAndWrite(recorder, "cache", func() (resp interface{}, err error) {
 		return map[string]string{"key": "value"}, nil
@@ -61,5 +61,5 @@ func TestCacheAndWrite(t *testing.T) {
 	err = server.CacheAndWrite(recorder, "cache", func() (resp interface{}, err error) {
 		return nil, errors.New("error1")
 	})
-	assert.Error(t, err, "server.CacheAndWrite -> responseSupplier(): error1")
+	assert.Error(t, err, "server.CacheAndWrite -> responseSupplier: error1")
 }
