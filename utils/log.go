@@ -7,12 +7,34 @@ import (
 	"net/http"
 )
 
-func LogInfo(msg string) {
-	log.Printf("INFO: %s", msg)
+func SetLogLevel(logLevel int) {
+	ll = logLevel
 }
 
-func LogError(msg string) {
-	log.Printf("ERROR: %s", msg)
+var ll = 0
+
+func LogError(format string, v ...interface{}) {
+	if ll >= 0 {
+		log.Printf("ERROR: "+format, v...)
+	}
+}
+
+func LogInfo(format string, v ...interface{}) {
+	if ll >= 1 {
+		log.Printf("INFO: "+format, v...)
+	}
+}
+
+func LogDebug(format string, v ...interface{}) {
+	if ll >= 2 {
+		log.Printf("DEBUG: "+format, v...)
+	}
+}
+
+func LogTrace(format string, v ...interface{}) {
+	if ll >= 3 {
+		log.Printf("TRACE: "+format, v...)
+	}
 }
 
 func LogAndSetStatus(w http.ResponseWriter, code int, err error) {

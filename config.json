@@ -1,5 +1,6 @@
 {
   "ServerPort": "8081",
   "CacheExpiration": "5m",
-  "CacheUpdatePeriod": "1m"
+  "CacheUpdatePeriod": "1m",
+  "LogLevel": 1
 }

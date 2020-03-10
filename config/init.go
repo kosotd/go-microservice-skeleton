@@ -56,4 +56,5 @@ func loadEnvConfiguration(conf *Config, helper EnvHelper) {
 	conf.ServerPort = helper.GetEnvString(serverPortEnvKey, "8081")
 	conf.CacheExpiration = helper.GetEnvString(cacheExpirationEnvKey, "5m")
 	conf.CacheUpdatePeriod = helper.GetEnvString(cacheUpdatePeriodEnvKey, "1m")
+	conf.LogLevel = helper.GetEnvInt(logLevelEnvKey, 1)
 }

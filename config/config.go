@@ -13,6 +13,7 @@ type Config struct {
 	ServerPort        string
 	CacheExpiration   string
 	CacheUpdatePeriod string
+	LogLevel          int
 }
 
 func GetConfig() *Config {
