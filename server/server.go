@@ -14,8 +14,6 @@ import (
 )
 
 func RunServer(handler http.Handler) {
-	utils.SetLogLevel(config.GetConfig().LogLevel)
-
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", config.GetConfig().ServerPort),
 		Handler: handler,

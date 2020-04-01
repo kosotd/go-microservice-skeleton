@@ -39,6 +39,8 @@ func InitConfig(configGetter configGetter, loadEnvChild func(EnvHelper)) {
 		}
 
 		initialized = 1
+
+		utils.SetLogLevel(configGetter.GetBaseConfig().LogLevel)
 	})
 }
 
