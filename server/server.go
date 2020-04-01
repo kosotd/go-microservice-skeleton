@@ -28,6 +28,8 @@ func RunServer(handler http.Handler) {
 
 	quit := make(chan os.Signal, 1)
 	signal.Notify(quit, syscall.SIGINT, syscall.SIGTERM)
+	defer signal.Stop(quit)
+
 	<-quit
 	utils.LogInfo("shutdown server ...")
 

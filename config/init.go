@@ -55,8 +55,8 @@ func loadFileConfiguration(file string, conf interface{}) {
 
 func loadEnvConfiguration(conf *Config, helper EnvHelper) {
 	_ = godotenv.Load("./config.env")
-	conf.ServerPort = helper.GetEnvString(serverPortEnvKey, "8081")
-	conf.CacheExpiration = helper.GetEnvString(cacheExpirationEnvKey, "5m")
-	conf.CacheUpdatePeriod = helper.GetEnvString(cacheUpdatePeriodEnvKey, "1m")
-	conf.LogLevel = helper.GetEnvInt(logLevelEnvKey, 1)
+	conf.ServerPort = helper.GetEnvString(serverPortEnvKey, serverPortDefault)
+	conf.CacheExpiration = helper.GetEnvString(cacheExpirationEnvKey, cacheExpirationDefault)
+	conf.CacheUpdatePeriod = helper.GetEnvString(cacheUpdatePeriodEnvKey, cacheUpdatePeriodDefault)
+	conf.LogLevel = helper.GetEnvInt(logLevelEnvKey, logLevelDefault)
 }
