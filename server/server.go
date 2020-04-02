@@ -13,7 +13,9 @@ import (
 	"time"
 )
 
-func RunServer(handler http.Handler) {
+func RunServer(handler http.Handler, close func()) {
+	defer close()
+
 	srv := &http.Server{
 		Addr:    fmt.Sprintf(":%s", config.GetConfig().ServerPort),
 		Handler: handler,
